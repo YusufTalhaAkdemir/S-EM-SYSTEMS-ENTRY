@@ -4,16 +4,15 @@ Bu proje, bir güvenlik operasyon merkezi (SOC) senaryosuna benzer şekilde, Waz
 
 ## 📌 İçerik
 
-* [Ortam Mimarisi](#ortam-mimarisi)
-* [Kurulum Aşamaları](#kurulum-aşamaları)
+* Ortam Mimarisi
+* Kurulum Aşamaları
 
-  * [Wazuh Sunucusu Kurulumu](#1-wazuh-sunucusu-kurulumu)
-  * [Ajan Kurulumu ve Kaydı](#2-ajan-kurulumu-ve-kaydı)
-* [Senaryo 1: Yeni Admin Kullanıcısı Oluşturma](#senaryo-1-yeni-admin-kullanıcısı-oluşturma)
-* [Planlanan Diğer Senaryolar](#planlanan-diğer-senaryolar)
-* [Görseller](#görseller)
-* [Kaynaklar](#kaynaklar)
-
+  * Wazuh Sunucusu Kurulumu
+  * Ajan Kurulumu ve Kaydı
+* Senaryo 1: Yeni Admin Kullanıcısı Oluşturma
+* Planlanan Diğer Senaryolar
+* Görseller
+* Kaynaklar
 ---
 
 ## 🏧 Ortam Mimarisi
@@ -67,11 +66,11 @@ sudo systemctl status wazuh-dashboard
 ```bash
 sudo systemctl status wazuh-indexer
 ```
-![Resim Açıklaması](images/3.png)
+![Resim Açıklaması](images/wazuh_indexer_status.png)
 
 #### Wazuh Başlatma
 
-![Resim Açıklaması](images/4.png)
+![Resim Açıklaması](images/dead_service.png)
 
 #### Yaptığımız kontrollerde actif olmayan hizmetler için şu komutları çalıştırmalıyız
 
@@ -95,23 +94,23 @@ sudo systemctl start wazuh-indexer
 
  1. Giriş ekranı
 
-![Resim Açıklaması](images/6.png)
+![Resim Açıklaması](images/wazuh_giriş_ekranı.png)
 
  2. Açılış ekranı
 
-![Resim Açıklaması](images/7.png)
+![Resim Açıklaması](images/wazuh_açılış_ekranı.png)
 
  3. Eklediğimiz ajanları gördüğümüz ekran
 
-![Resim Açıklaması](images/8.png)
+![Resim Açıklaması](images/wazuh_agents_ekranı.png)
 
  4. Güvenlik olayları ekranı
 
-![Resim Açıklaması](images/9.png)
+![Resim Açıklaması](images/wazuh_güvenlik_olayları_ekranı.png)
 
 5. Mitre attack ekranı
 
-![Resim Açıklaması](images/10.png)
+![Resim Açıklaması](images/wazuh_mitre_attack_ekranı.png)
 
 
 #### Admin Şifresi Unutulursa
@@ -121,7 +120,7 @@ sudo systemctl start wazuh-indexer
 ```bash
 sudo tar -O -xvf wazuh-install-files.tar wazuh-install-files/wazuh-passwords.txt
 ```
-![Resim Açıklaması](images/5.png)
+![Resim Açıklaması](images/şifre_öğrenme.png)
 
 
 ### 2. Ajan Kurulumu ve Kaydı
@@ -190,7 +189,7 @@ Windows 11 uzerinde PowerShell yönetici olarak çalıştırıldı:
 net user deneme1 /add
 net localgroup administrators deneme1 /add
 ```
-![Resim Açıklaması](images/11.png)
+![Resim Açıklaması](images/admin_kullanıcı_oluşturma.png)
 
 ### 📊 Wazuh Alarmı
 
@@ -202,8 +201,8 @@ net localgroup administrators deneme1 /add
 
 ### 🖼️ Görsel
 
-![Resim Açıklaması](images/12.png)
-![Resim Açıklaması](images/13.png)
+![Resim Açıklaması](images/admin_kullanıcı_alarmı.png)
+![Resim Açıklaması](images/admin_kullanıcı_alarmı2.png)
 
 ---
 
@@ -226,7 +225,7 @@ Görüntüler `images/` klasörüne yerleştirilmiştir:
 proje/
 ├── README.md
 └── images/
-    ├── admin_alert.png
+    ├── admin_kullanıcı_oluşturma.png
     └── ...
 ```
 
