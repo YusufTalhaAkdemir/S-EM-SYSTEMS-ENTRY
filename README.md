@@ -37,6 +37,7 @@ Ağ üzerinde konumlandırılmış sanal ve fiziksel makineler aşağıdaki gibi
 
 Ubuntu sunucuda aşağıdaki komutla tüm bileşenleri tek seferde kurduk:
 
+* All in one
 ```bash
 sudo apt update
 sudo apt install curl -y
@@ -45,21 +46,83 @@ curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh && sudo bash ./wazuh-in
 
 * Bu komut Wazuh Manager, Filebeat, OpenSearch ve Dashboard bileşenlerini kurar.
 * Kurulum sonunda size bir **admin kullanıcı şifresi** verilir (ilk girişte gereklidir).
-* Dashboard URL'si: `https://<sunucu-ip>:5601`
+* Dashboard URL'si: `https://<sunucu-ip>:443`
 
 
+#### Wazuh durum kontrolü
+
+* Wazuh manager durum kontrolü
+```bash
+sudo systemctl status wazuh-manager
+```
+![Resim Açıklaması](images/wazuh_manager_status.png)
+
+* Wazuh dashboard durum kontrolü
+```bash
+sudo systemctl status wazuh-dashboard
+```
+![Resim Açıklaması](images/wazuh_dashboard_status.png)
+
+* Wazuh indexer durum kontrolü
+```bash
+sudo systemctl status wazuh-indexer
+```
+![Resim Açıklaması](images/3.png)
+
+#### Wazuh Başlatma
+
+![Resim Açıklaması](images/4.png)
+
+#### Yaptığımız kontrollerde actif olmayan hizmetler için şu komutları çalıştırmalıyız
+
+* Wazuh manager başlatma
+```bash
+sudo systemctl start wazuh-manager
+```
+* Wazuh dashboard başlatma
+```bash
+sudo systemctl start wazuh-dashboard
+```
+* wazuh indexer başlatma
+```bash
+sudo systemctl start wazuh-indexer
+```
+
+#### Şİmdi Web Arayüzüne Erişelim
+
+* Wazuh kurulum ekranının sonunda bize admin kullanıcı adı ile secret password vermişti
+* "Admin" kullanıcı adı ve "secret_password" ile giriş yapıyoruz
+
+ 1. Giriş ekranı
+
+![Resim Açıklaması](images/6.png)
+
+ 2. Açılış ekranı
+
+![Resim Açıklaması](images/7.png)
+
+ 3. Eklediğimiz ajanları gördüğümüz ekran
+
+![Resim Açıklaması](images/8.png)
+
+ 4. Güvenlik olayları ekranı
+
+![Resim Açıklaması](images/9.png)
+
+5. Mitre attack ekranı
+
+![Resim Açıklaması](images/10.png)
 
 
 #### Admin Şifresi Unutulursa
 
-Sunucuda şu dizine gidin:
+* Tüm Wazuh dizinleyicisi ve Wazuh API kullanıcılarının kimlik bilgilerini yazdırmak için aşağıdaki komutu çalıştırın.
 
 ```bash
-cd /usr/share/wazuh-dashboard/plugins/security/authc/
-sudo node create-admin-user.js
+sudo tar -O -xvf wazuh-install-files.tar wazuh-install-files/wazuh-passwords.txt
 ```
+![Resim Açıklaması](images/5.png)
 
-Yeni admin şifresi oluşturulur.
 
 ### 2. Ajan Kurulumu ve Kaydı
 
@@ -124,21 +187,23 @@ apt-get update
 Windows 11 uzerinde PowerShell yönetici olarak çalıştırıldı:
 
 ```powershell
-net user pentest_admin /add
-net localgroup administrators pentest_admin /add
+net user deneme1 /add
+net localgroup administrators deneme1 /add
 ```
+![Resim Açıklaması](images/11.png)
 
 ### 📊 Wazuh Alarmı
 
 * **agent.name**: Win11
-* **rule.description**: Windows logon success.
-* **rule.id**: 60106
-* **rule.level**: 3
-* **timestamp**: May 22, 2025 @ 00:32:23
+* **rule.description**: Administrators Group Changed
+* **rule.id**: 60154
+* **rule.level**: 12
+* **timestamp**: May 26, 2025 @ 19:30:53.805
 
 ### 🖼️ Görsel
 
-![Admin Kullanıcı Alarmı](images/admin_alert.png)
+![Resim Açıklaması](images/12.png)
+![Resim Açıklaması](images/13.png)
 
 ---
 
